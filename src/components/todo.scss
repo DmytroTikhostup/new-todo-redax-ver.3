@@ -1,0 +1,28 @@
+.completed {
+    text-decoration: line-through;
+    opacity: 0.4;
+}
+
+body {
+    background: linear-gradient(90deg, rgb(28, 27, 57) 0%, rgb(87, 58, 114) 100%);
+}
+
+.listTextString {
+    height: auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    box-sizing: border-box;
+    margin-top: 15px;
+    padding: 5px;
+    border: 1px black solid;
+    border-radius: 10px;
+}
+
+.buttonBlock {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin-top: 5px;
+}
