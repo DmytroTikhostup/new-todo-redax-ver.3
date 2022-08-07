@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import './todo.scss';
 import styled from 'styled-components';
-import { useDispatch, useSelector } from 'react-redux';
-// import { allActions } from '../actions/index';
+import { useDispatch } from 'react-redux';
 import { editTodo, deleteTodo } from '../reducers/counterReducer';
 import { deleteForm, completeForm, editForm } from '../reducers/formReducer';
 
@@ -20,7 +19,7 @@ const ButtonListStyled = styled.button`
     text-transform: uppercase;
 `;
 
-const Todo = ({ text, todo, todos, setTodos }) => {
+const Todo = ({ text, todo }) => {
     const dispatch = useDispatch();
 
     // function --- Delete Task ------------------------------

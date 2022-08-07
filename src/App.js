@@ -71,20 +71,12 @@ function App() {
                 <h1 className="App-header">New TODO app </h1>
                 <Counter className="Counter-section" counters={counters} />
             </header>
-            <Form inputText={inputText} todos={todos} setTodos={setTodos} setInputText={setInputText} counters={counters} />
+            {/* <Form inputText={inputText} todos={todos} setTodos={setTodos} setInputText={setInputText} counters={counters} /> */}
 
             <button className="open-btn" onClick={() => setPopapActive(true)}>
                 ADD NEW TODO
             </button>
-            <Popup
-                active={popupActive}
-                setActive={setPopapActive}
-                inputText={inputText}
-                todos={todos}
-                // setTodos={setTodos}
-                setInputText={setInputText}
-                counters={counters}
-            />
+            <Popup active={popupActive} setActive={setPopapActive} inputText={inputText} todos={todos} setInputText={setInputText} counters={counters} />
             <List setTodos={setTodos} todos={forms} counters={counters} color={generateColor()} />
         </div>
     );

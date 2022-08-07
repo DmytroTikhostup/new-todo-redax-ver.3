@@ -1,11 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-// const initialState = {
-//     createdCounter: 0,
-//     editedCounter: 0,
-//     deletedCounter: 0,
-// };
-
 export const counterSlice = createSlice({
     name: todos,
     initialState,

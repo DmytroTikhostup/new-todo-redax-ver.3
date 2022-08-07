@@ -15,11 +15,9 @@ export const formSlice = createSlice({
                 background: '#' + Math.floor(Math.random() * 16777215).toString(16),
             },
         ],
-        fetchForm: (state, action) =>
-            action.payload.map((item) => ({
-                ...item,
-                background: '#' + Math.floor(Math.random() * 16777215).toString(16),
-            })),
+
+        fetchForm: (state, action) => action.payload.map((item) => ({ ...item, background: '#' + Math.floor(Math.random() * 16777215).toString(16) })),
+
         completeForm: (state, action) =>
             state.map((item) => {
                 if (item.id === action.payload) {
@@ -30,7 +28,9 @@ export const formSlice = createSlice({
                 }
                 return item;
             }),
+
         deleteForm: (state, action) => state.filter((item) => item.id !== action.payload),
+
         editForm: (state, action) =>
             state.map((item) => {
                 if (item.id === action.payload.id) {

@@ -9,7 +9,7 @@ import { addForm, fetchForm } from '../reducers/formReducer';
 
 const InputStyled = styled.input`
     :hover {
-        border: 3px green solid;
+        border: 1px black solid;
         box-shadow: 0px 0px 5px 3px rgb(255, 255, 255);
     }
     width: 50%;
@@ -20,13 +20,14 @@ const InputStyled = styled.input`
 
 const ButtonStyled = styled.button`
     color: white;
+    font-weight: bold;
     outline: 0;
     padding: 2px 5px 2px 5px;
     margin: 10px;
     background: #8f54fc;
     border-radius: 5px;
     cursor: pointer;
-    width: 60px;
+    width: 110px;
     height: 40px;
     text-transform: uppercase;
     :hover {
@@ -36,17 +37,18 @@ const ButtonStyled = styled.button`
 `;
 
 const ServerButton = styled.button`
-    border: 0;
+    border: 1;
     outline: 0;
     padding: 2px 5px 2px 5px;
     margin-right: 5px;
-    background-color: #ff33e0;
+    color: white;
+    background-color: #66a1e4;
     border-radius: 5px;
-    height: 36px;
+    height: 40px;
+    width: 110px;
     cursor: pointer;
-    width: auto;
     :hover {
-        box-shadow: 0px 0px 5px 3px #ff33e0;
+        box-shadow: 0px 0px 5px 3px #418ce2;
         border: 1px black solid;
     }
 `;
@@ -61,7 +63,7 @@ const Form = ({ inputText, setInputText }) => {
     const submitTodoHandler = (e) => {
         e.preventDefault();
         dispatch(addTodo(1)); // -- counter
-        dispatch(addForm(inputText)); // -- add todo
+        dispatch(addForm(inputText === '' ? 'ooops, empty...' : inputText)); // -- add todo
         setInputText('');
     };
 
@@ -81,7 +83,7 @@ const Form = ({ inputText, setInputText }) => {
                 Add
             </ButtonStyled>
             <ServerButton className={'serverbutton'} onClick={FetchTodos}>
-                ➥
+                Get tasks
             </ServerButton>
         </form>
     );

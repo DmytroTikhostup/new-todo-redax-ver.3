@@ -12,24 +12,14 @@ const WrapperStyledOl = styled.ol`
     background: ${(props) => props.generateColor};
 `;
 
-const List = ({ todos, setTodos, setEditText, counters, setCounters }) => {
+const List = ({ todos, setEditText, counters }) => {
     const createForm = useSelector((state) => state.formReducer);
 
     return (
         <div>
             <WrapperStyledOl>
                 {todos.map((todo) => (
-                    <Todo
-                        key={todo.id}
-                        todo={todo}
-                        text={todo.text}
-                        // setTodos={setTodos}
-                        todos={todos}
-                        setEditText={setEditText}
-                        counters={counters}
-                        // setCounters={setCounters}
-                        createForm={createForm}
-                    />
+                    <Todo key={todo.id} todo={todo} text={todo.text} todos={todos} setEditText={setEditText} counters={counters} createForm={createForm} />
                 ))}
             </WrapperStyledOl>
         </div>
