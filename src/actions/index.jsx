@@ -1,9 +1,9 @@
-import counterActions from './counterAction';
-import todoAction from './todoAction';
-import formAction from './formAction';
+// import counterActions from './counterAction';
+// import todoAction from './todoAction';
+// import formAction from './formAction';
 
-export const allActions = {
-    counterActions,
-    todoAction,
-    formAction,
-};
+// export const allActions = {
+//     counterActions,
+//     todoAction,
+//     formAction,
+// };

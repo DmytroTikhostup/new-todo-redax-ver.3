@@ -2,17 +2,24 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import './index.scss';
-import rootReducer from './reducers/index';
-import CounterReducer from './reducers/counterReducer';
+// import rootReducer from './reducers/index';
+import counterReducer from './reducers/counterReducer';
+import formReducer from './reducers/formReducer';
+
 import { Provider } from 'react-redux';
-import { legacy_createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
 // ---------------------------------------------------
 
-const store = legacy_createStore(rootReducer, applyMiddleware(thunk));
+const store = configureStore({
+    reducer: combineReducers({
+        counter: counterReducer,
+        form: formReducer,
+    }),
+});
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+// console.log(store.getState());
 root.render(
     <Provider store={store}>
         <App />

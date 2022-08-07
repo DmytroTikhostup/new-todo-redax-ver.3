@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import './todo.scss';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
-import { allActions } from '../actions/index';
+// import { allActions } from '../actions/index';
+import { editTodo, deleteTodo } from '../reducers/counterReducer';
+import { deleteForm, completeForm, editForm } from '../reducers/formReducer';
 
 // ----- styled elements -----------------------------------------------------------------
 
@@ -17,41 +19,24 @@ const ButtonListStyled = styled.button`
     width: 50px;
     text-transform: uppercase;
 `;
-// ---- random - color- task----
-
-const generateColor = () => {
-    return '#' + Math.floor(Math.random() * 16777215).toString(16);
-};
 
 const Todo = ({ text, todo, todos, setTodos }) => {
     const dispatch = useDispatch();
-    const counters = useSelector((state) => state);
-    const list = useSelector((state) => state);
 
     // function --- Delete Task ------------------------------
 
     const [isEdit, setIsEdit] = useState(false);
     const [todoText, setTodoText] = useState(text);
 
-    const deleteHandler = (id) => {
-        // setTodos(todos.filter((el) => el.id !== todo.id));
-        dispatch(allActions.counterActions.delete_todo_count);
-        dispatch(allActions.todoAction.delete_todo(id));
+    const deleteHandler = () => {
+        dispatch(deleteTodo(1)); // -- counter
+        dispatch(deleteForm(todo.id)); // -  delete
     };
 
     // function --- Done Task --------------------------------
 
-    const completeHandler = (id) => {
-        dispatch(allActions.todoAction.complete_todo(id));
-
-        // setTodos(
-        //     todos.map((el) => {
-        //         if (el.id === todo.id) {
-        //             return { ...el, completed: !el.completed };
-        //         }
-        //         return el;
-        //     })
-        // );
+    const completeHandler = () => {
+        dispatch(completeForm(todo.id)); // - complete
     };
 
     // function --- Edit Task -----------------------------------
@@ -68,23 +53,15 @@ const Todo = ({ text, todo, todos, setTodos }) => {
     const saveHandler = (event, id) => {
         const value = event.currentTarget.value;
 
-        dispatch(allActions.counterActions.edit_todo_count);
-        dispatch(allActions.todoAction.edit_todo(id, value));
+        dispatch(editTodo(1)); // -- counter
+        dispatch(
+            editForm({
+                id: todo.id,
+                text: value,
+            })
+        );
 
         setIsEdit(false);
-        // setTodos(
-        //     todos.map((el) => {
-        //         if (el.id === todo.id) {
-        //             return {
-        //                 ...el,
-        //                 edit: !el.edit,
-        //                 text: value,
-        //                 background: generateColor(),
-        //             };
-        //         }
-        //         return el;
-        //     })
-        // );
     };
 
     // -------------- RENDER ------------------------------------------------------------

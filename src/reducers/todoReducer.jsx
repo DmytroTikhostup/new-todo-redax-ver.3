@@ -1,24 +1,31 @@
-const defaultState = { list: [] };
+import { createSlice } from '@reduxjs/toolkit';
 
-const todoReducer = (state = defaultState, action) => {
-    switch (action.type) {
-        case 'DELETE_TODO':
-            return { ...state, list: state.list.filter((el) => el.id !== action.payload) };
+// const initialState = {
+//     createdCounter: 0,
+//     editedCounter: 0,
+//     deletedCounter: 0,
+// };
 
-        case 'EDIT_TODO':
-            return {
-                ...state,
-                list: state.list.map((el) => (el.id === action.payload.id ? { ...el, edit: !el.edit, text: action.payload.value } : el)),
-            };
+export const counterSlice = createSlice({
+    name: todos,
+    initialState,
+    reducers: {
+        addTodo: (state, action) => ({
+            ...state,
+            createdCounter: state.createdCounter + action.payload,
+        }),
+        editTodo: (state, action) => ({
+            ...state,
+            editedCounter: state.editedCounter + action.payload,
+        }),
 
-        case 'COMPLETE_TODO':
-            return {
-                ...state,
-                list: state.list.map((el) => (el.id === action.payload ? { ...el, completed: !el.completed } : el)),
-            };
+        deleteTodo: (state, action) => ({
+            ...state,
+            deletedCounter: state.deletedCounter + action.payload,
+        }),
+    },
+});
 
-        default:
-            return state;
-    }
-};
-export default todoReducer;
+export const { addTodo, editTodo, deleteTodo } = counterSlice.actions;
+
+export default counterSlice.reducer;

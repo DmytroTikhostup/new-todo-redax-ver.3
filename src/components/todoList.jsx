@@ -2,6 +2,7 @@ import React from 'react';
 import Todo from './todoRow';
 import './todo.scss';
 import styled from 'styled-components';
+import { useSelector } from 'react-redux';
 
 const WrapperStyledOl = styled.ol`
     width: auto;
@@ -12,6 +13,8 @@ const WrapperStyledOl = styled.ol`
 `;
 
 const List = ({ todos, setTodos, setEditText, counters, setCounters }) => {
+    const createForm = useSelector((state) => state.formReducer);
+
     return (
         <div>
             <WrapperStyledOl>
@@ -20,11 +23,12 @@ const List = ({ todos, setTodos, setEditText, counters, setCounters }) => {
                         key={todo.id}
                         todo={todo}
                         text={todo.text}
-                        setTodos={setTodos}
+                        // setTodos={setTodos}
                         todos={todos}
                         setEditText={setEditText}
                         counters={counters}
-                        setCounters={setCounters}
+                        // setCounters={setCounters}
+                        createForm={createForm}
                     />
                 ))}
             </WrapperStyledOl>

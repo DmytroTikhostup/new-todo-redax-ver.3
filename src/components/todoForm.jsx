@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './todo.scss';
 import styled from 'styled-components';
-// import { ADD_TODO } from '../redux/reducer';
-// import { CREATE_FORM } from '../redux/reducerForm';
 import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
-import { allActions } from '../actions';
+import { addTodo } from '../reducers/counterReducer';
+import { addForm, fetchForm } from '../reducers/formReducer';
 
 // ----- styled elements -----------------------------------------------------------------
 
@@ -53,44 +51,26 @@ const ServerButton = styled.button`
     }
 `;
 
-// ---- random - color- task--------------------------------------------------------------
-const generateColor = () => {
-    return '#' + Math.floor(Math.random() * 16777215).toString(16);
-};
+const Form = ({ inputText, setInputText }) => {
+    const dispatch = useDispatch();
 
-const Form = ({ todos, setTodos, inputText, setInputText }) => {
     const inputTextHandler = (e) => {
         setInputText(e.target.value);
     };
 
-    const dispatch = useDispatch();
-    const createForm = useSelector((state) => state);
-
     const submitTodoHandler = (e) => {
         e.preventDefault();
+        dispatch(addTodo(1)); // -- counter
+        dispatch(addForm(inputText)); // -- add todo
         setInputText('');
-        dispatch(allActions.counterActions.add_todo_count); // -- counter
-        dispatch(allActions.formAction.create_form(inputText)); // -- add todo
-        // setTodos([...todos, { text: inputText == '' ? '(empty)' : inputText, completed: false, id: Math.random() * 1000, background: generateColor() }]);
     };
 
     const FetchTodos = (e) => {
         e.preventDefault();
         fetch('https://gist.githubusercontent.com/alexandrtovmach/0c8a29b734075864727228c559fe9f96/raw/c4e4133c9658af4c4b3474475273b23b4a70b4af/todo-task.json')
             .then((response) => response.json())
-            .then((getTodos) => {
-                setTodos([
-                    ...todos,
-                    ...getTodos.map((el) => {
-                        return {
-                            ...el,
-                            text: el.text,
-                            id: Math.random() * 1000,
-                            completed: el.isCompleted,
-                            background: generateColor(),
-                        };
-                    }),
-                ]);
+            .then((todos) => {
+                dispatch(fetchForm(todos));
             });
     };
 

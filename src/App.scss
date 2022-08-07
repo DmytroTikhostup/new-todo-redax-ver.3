@@ -13,7 +13,25 @@
     color: white;
 }
 
-p {
+i {
     margin: 0;
     color: azure;
+    margin: 5px 30px 100px 30px;
+}
+
+.open-btn {
+    color: white;
+    outline: 0;
+    padding: 2px 5px 2px 5px;
+    margin: 10px;
+    background: #8f54fc;
+    border-radius: 5px;
+    cursor: pointer;
+    width: auto;
+    height: auto;
+    text-transform: uppercase;
+    :hover {
+        box-shadow: 0px 0px 5px 3px #8f54fc;
+        border: 1px black solid;
+    }
 }
