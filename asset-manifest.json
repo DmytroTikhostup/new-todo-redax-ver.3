@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/new-todo-redax-ver.3/static/css/main.58e137be.css",
+    "main.js": "/new-todo-redax-ver.3/static/js/main.40c41225.js",
+    "index.html": "/new-todo-redax-ver.3/index.html",
+    "main.58e137be.css.map": "/new-todo-redax-ver.3/static/css/main.58e137be.css.map",
+    "main.40c41225.js.map": "/new-todo-redax-ver.3/static/js/main.40c41225.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.58e137be.css",
+    "static/js/main.40c41225.js"
+  ]
+}
