@@ -19,7 +19,7 @@ const persistConfig = {
     storage,
 };
 
-const persistedReducer = persistReducer(persistConfig, counterReducer, formReducer);
+const persistedReducer = persistReducer(persistConfig, counterReducer);
 
 // ------ store ---------------------------------------------------------------
 const store = configureStore({
@@ -32,7 +32,7 @@ const store = configureStore({
 
 const persistor = persistStore(store);
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById('root') as any);
 // console.log(store.getState());
 root.render(
     <Provider store={store}>

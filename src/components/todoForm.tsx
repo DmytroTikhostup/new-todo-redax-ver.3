@@ -56,18 +56,18 @@ const ServerButton = styled.button`
 const Form = ({ inputText, setInputText }) => {
     const dispatch = useDispatch();
 
-    const inputTextHandler = (e) => {
+    const inputTextHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
         setInputText(e.target.value);
     };
 
-    const submitTodoHandler = (e) => {
+    const submitTodoHandler = (e: React.MouseEvent<HTMLButtonElement> | React.KeyboardEvent<HTMLInputElement>): void => {
         e.preventDefault();
         dispatch(addTodo(1)); // -- counter
         dispatch(addForm(inputText === '' ? 'ooops, empty...' : inputText)); // -- add todo
         setInputText('');
     };
 
-    const FetchTodos = (e) => {
+    const FetchTodos = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         fetch('https://gist.githubusercontent.com/alexandrtovmach/0c8a29b734075864727228c559fe9f96/raw/c4e4133c9658af4c4b3474475273b23b4a70b4af/todo-task.json')
             .then((response) => response.json())

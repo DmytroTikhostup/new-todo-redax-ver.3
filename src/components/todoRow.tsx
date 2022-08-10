@@ -24,8 +24,8 @@ const Todo = ({ text, todo }) => {
 
     // function --- Delete Task ------------------------------
 
-    const [isEdit, setIsEdit] = useState(false);
-    const [todoText, setTodoText] = useState(text);
+    const [isEdit, setIsEdit] = useState<boolean>(false);
+    const [todoText, setTodoText] = useState<string>(text);
 
     const deleteHandler = () => {
         dispatch(deleteTodo(1)); // -- counter
@@ -40,7 +40,7 @@ const Todo = ({ text, todo }) => {
 
     // function --- Edit Task -----------------------------------
 
-    const changeHandler = (event) => {
+    const changeHandler = (event: any) => {
         const value = event.currentTarget.value;
         setTodoText(value);
     };
@@ -49,7 +49,7 @@ const Todo = ({ text, todo }) => {
         setIsEdit(true);
     };
 
-    const saveHandler = (event, id) => {
+    const saveHandler = (event: any, id: number) => {
         const value = event.currentTarget.value;
 
         dispatch(editTodo(1)); // -- counter
@@ -69,7 +69,7 @@ const Todo = ({ text, todo }) => {
         <div className={'listTextString'} style={{ background: todo.completed === true ? '#909090' : todo.background }}>
             <li>
                 {isEdit ? (
-                    <textarea type="submit" value={todoText} onChange={changeHandler} onBlur={saveHandler} />
+                    <textarea type="submit" value={todoText} onChange={changeHandler} onBlur={(event) => saveHandler} />
                 ) : (
                     <span className={`${todo.completed ? 'completed' : ''}`}>{todoText}</span>
                 )}

@@ -6,15 +6,21 @@ import { useSelector } from 'react-redux';
 import List from './components/todoList';
 import Popup from './components/popup';
 
-function App() {
-    const [inputText, setInputText] = useState('');
+const App: React.FunctionComponent = () => {
+    const [inputText, setInputText] = useState<string>('');
     const [todos, setTodos] = useState([]);
-    const [popupActive, setPopapActive] = useState(false);
+    const [popupActive, setPopapActive] = useState<boolean>(false);
 
     // create counters --------------------------------------------------------
 
-    const counters = useSelector((state) => state.counter);
-    const forms = useSelector((state) => state.form);
+    interface StateObj {
+        state: object;
+        counter: number;
+        form: string;
+    }
+
+    const counters = useSelector((state: StateObj) => state.counter);
+    const forms = useSelector((state: StateObj) => state.form);
     // console.log(counters);
 
     const Counter = ({ counters }) => {
@@ -49,6 +55,6 @@ function App() {
             <List setTodos={setTodos} todos={forms} counters={counters} color={generateColor()} />
         </div>
     );
-}
+};
 
 export default App;

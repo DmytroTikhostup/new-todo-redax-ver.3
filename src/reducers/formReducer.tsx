@@ -1,12 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { MainTodo } from '../components/Types/TodoObj';
 
-const initialState = [];
+const initialState: MainTodo = [];
 
 export const formSlice = createSlice({
     name: 'form',
     initialState,
     reducers: {
-        addForm: (state, action) => [
+        addForm: (state: object, action) => [
             ...state,
             {
                 text: action.payload,
@@ -16,10 +17,11 @@ export const formSlice = createSlice({
             },
         ],
 
-        fetchForm: (state, action) => action.payload.map((item) => ({ ...item, background: '#' + Math.floor(Math.random() * 16777215).toString(16) })),
+        fetchForm: (state, action) =>
+            action.payload.map((item: MainTodo) => ({ ...item, background: '#' + Math.floor(Math.random() * 16777215).toString(16) })),
 
         completeForm: (state, action) =>
-            state.map((item) => {
+            state.map((item: MainTodo) => {
                 if (item.id === action.payload) {
                     return {
                         ...item,
@@ -29,10 +31,10 @@ export const formSlice = createSlice({
                 return item;
             }),
 
-        deleteForm: (state, action) => state.filter((item) => item.id !== action.payload),
+        deleteForm: (state, action) => state.filter((item: MainTodo) => item.id !== action.payload),
 
         editForm: (state, action) =>
-            state.map((item) => {
+            state.map((item: MainTodo) => {
                 if (item.id === action.payload.id) {
                     return {
                         ...item,
